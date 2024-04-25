@@ -1,0 +1,82 @@
+#Program for implementing Prewitt Filter
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+im=cv2.imread('/content/studio-ghibli-free-images-2.jpg',0)
+p_x=np.array([[1,1,1],[0,0,0],[-1,-1,-1]])
+p_y=np.array([[1,0,-1],[1,0,-1],[1,0,-1]])
+pre_im_x=cv2.filter2D(im,-1,p_x)
+pre_im_y=cv2.filter2D(im,-1,p_y)
+#cv2_imshow(pre_im_x)
+#cv2_imshow(pre_im_y)
+#cv2_imshow(pre_im_x+pre_im_y)
+hor_stack=np.column_stack((pre_im_x,pre_im_y,pre_im_x+pre_im_y ))
+cv2_imshow(hor_stack)
+
+
+#Program for implementing Sobel Filter
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+im=cv2.imread('/content/studio-ghibli-free-images-2.jpg',0)
+p_x=np.array([[1, 2,1],[0,0,0],[-1,-2,-1]])
+p_y=np.array([[1,0,-1],[2,0,-2],[1,0,-1]])
+pre_im_x=cv2.filter2D(im,-1,p_x)
+pre_im_y=cv2.filter2D(im,-1,p_y)
+#cv2_imshow(pre_im_x)
+#cv2_imshow(pre_im_y)
+#cv2_imshow(pre_im_x+pre_im_y)
+hor_stack=np.column_stack((pre_im_x,pre_im_y,pre_im_x+pre_im_y ))
+cv2_imshow(hor_stack)
+
+
+##Program for implementing Laplacian Filter
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+im=cv2.imread('/content/studio-ghibli-free-images-2.jpg',0)
+p_x=np.array([[-1,-1,-1],[-1,8,-1],[-1,-1,-1]])
+#p_y=np.array([[1,0,-1],[1,0,-1],[1,0,-1]])
+pre_im_x=cv2.filter2D(im,-1,p_x)
+pre_im_y=cv2.filter2D(im,-1,p_y)
+cv2_imshow(pre_im_x)
+#cv2_imshow(pre_im_y)
+#cv2_imshow(pre_im_x+pre_im_y)
+#hor_stack=np.column_stack((pre_im_x,pre_im_y,pre_im_x+pre_im_y ))
+#cv2_imshow(hor_stack)
+
+
+#Program for implementing Averaging & Weighted averaging  Filter
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+im=cv2.imread('/content/studio-ghibli-free-images-2.jpg',0)
+print(im.shape)
+p_x=np.array([[1,1,1],[1,1,1],[1,1,1]])
+pre_im_x=1/9*p_x
+p_y=np.array([[1,2,1],[2,4,2],[1,2,1]])
+pre_im_x1=cv2.filter2D(im,-1,pre_im_x)
+pre_im_y=1/16*p_y
+pre_im_y1=cv2.filter2D(im,-1,pre_im_y)
+cv2_imshow(pre_im_y1)
+cv2_imshow(pre_im_y1)
+hor_stack=np.column_stack((pre_im_x1,pre_im_y1 ))
+cv2_imshow(hor_stack)
+
+
+(225, 225)
+
+
+##Program for enhancement of image implementing Laplacian Filter
+import cv2
+import numpy as np
+from google.colab.patches import cv2_imshow
+im=cv2.imread('/content/studio-ghibli-free-images-2.jpg',0)
+p_x=np.array([[-1,-1,-1],[-1,9,-1],[-1,-1,-1]])
+p_y=np.array([[0,-1, 0],[-1, 5,-1],[0,-1, 0]])
+pre_im_x=cv2.filter2D(im,-1,p_x)
+pre_im_y=cv2.filter2D(im,-1,p_y)
+cv2_imshow(pre_im_x)
+cv2_imshow(pre_im_y)
+hor_stack=np.column_stack((pre_im_x,pre_im_y ))
+cv2_imshow(hor_stack)
