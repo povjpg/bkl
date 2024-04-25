@@ -1,0 +1,44 @@
+# Display the given color and grayscale image
+import cv2
+from google.colab.patches import cv2_imshow
+import numpy as np
+import matplotlib.pyplot as plt
+im=cv2.imread('/content/images.jpg')
+lane_image = np.copy(im)
+gray = cv2.cvtColor(lane_image, cv2.COLOR_RGB2GRAY)
+
+cv2_imshow(im)
+cv2_imshow(gray)
+
+
+# output image obtained after canny edge detection
+canny_img=cv2.Canny(gray,150,200)
+cv2_imshow(canny_img)
+
+# Output image after dilation
+kernel=np.ones((3,3),np.uint8)
+dilate_img=cv2.dilate(canny_img, kernel, iterations=1 )
+print(kernel)
+cv2_imshow(dilate_img)
+
+# Output image after erosion
+kernel=np.ones((3,3),np.uint8)
+erode_img=cv2.erode(dilate_img, kernel, iterations=1 )
+print(kernel)
+cv2_imshow(erode_img)
+
+
+# Output image after opening
+open_img=cv2.dilate(erode_img,kernel,iterations=1)
+cv2_imshow(open_img)
+
+
+
+# Output image after closing
+close_img=cv2.erode(dilate_img,kernel,iterations=1)
+cv2_imshow(close_img)
+
+# Output image after boudary extraction
+boundary_img= canny_img - erode_img
+boundary_img=boundary_img*255
+cv2_imshow(boundary_img)
